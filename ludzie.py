@@ -5,7 +5,7 @@ class Person:
         self.tel_no = tel_no
 class GymMember(Person):
     def __init__(self, membership_card):
-        self.membership_card = memneship_card
+        self.membership_card = membership_card
 class Administrator(Person):
     def __init__(self):
         pass
