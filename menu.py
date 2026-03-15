@@ -1,4 +1,6 @@
-from funkcje import show_workout_schedule, show_membership
+from funkcje import show_workout_schedule, show_membership, show_cennik
+
+
 
 print("SIŁOWNIA ZASPANI")
 menu_options = {
@@ -7,21 +9,8 @@ menu_options = {
         "function": show_workout_schedule
     },
     2 : {
-        1 : {
-            "name": "Karnety",
-            "function": show_membership
-        },
-        2 : {
-            "name": 'Pakiety dla firm',
-            "function": show_workout_schedule
-        },
-        3 : {
-            "name": 'Tutaj coś jeszcze dodać można',
-            "function": show_workout_schedule
-        },
-        4 : {
-            "name": 'Powrót',
-        },
+            "name": "CENNIK",
+            "function": show_cennik
     },
     3 : {
         "name": "FAQ",
