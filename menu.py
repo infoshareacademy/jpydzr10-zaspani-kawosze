@@ -1,6 +1,4 @@
-from funkcje import show_workout_schedule
-from funkcje import show_membership
-
+from funkcje import show_workout_schedule, show_membership
 
 print("SIŁOWNIA ZASPANI")
 menu_options = {
@@ -23,7 +21,6 @@ menu_options = {
         },
         4 : {
             "name": 'Powrót',
-            "function": show_workout_schedule
         },
     },
     3 : {
@@ -44,7 +41,6 @@ menu_options = {
     },
     7 : {
         "name": "Wyjście",
-        "function": show_workout_schedule
     },
 }
 
@@ -52,32 +48,37 @@ current_menu = menu_options
 
 while True:
     for key, value in current_menu.items():
-        print(f"{key}", end='. ')
         if "name" in value:
-            print(value['name'])
+            print(f"{key}. {value['name']}")
         else:
-            print("Cennik")
+            print(f"{key}. Cennik")
             for k, v in value.items():
                 print(f"    {k}. {v['name']}")
 
     try:
         menu_choice = int(input("Wybierz numer z listy: \n"))
-    except Exception:
+    except ValueError:
         print("Wprowadź liczbę z zakresu 1-7")
         continue
+
     if menu_choice not in current_menu:
         print("Podany numer nie znajduje się na liście, proszę podać poprawny numer \n")
         continue
 
     subvalue = current_menu[menu_choice]
+
     if "name" not in subvalue:
         current_menu = subvalue
         continue
-    elif 'function' in subvalue:
-        subvalue['function']()
-    elif subvalue == "Powrót":
+
+    if subvalue["name"] == "Powrót":
         current_menu = menu_options
-    elif subvalue == "Wyjście":
+        continue
+
+    if subvalue["name"] == "Wyjście":
         break
+
+    if "function" in subvalue:
+        subvalue["function"]()
 
 print("Kończymy na dziś")
