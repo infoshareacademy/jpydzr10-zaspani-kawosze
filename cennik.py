@@ -1,4 +1,4 @@
-from prettytable import PrettyTable
+from PrettyTable import PrettyTable
 table = PrettyTable()
 
 table.field_names = ["rodzaj wejścia", "ilość wejść","cena","sposób płatności"]
