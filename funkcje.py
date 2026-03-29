@@ -1,9 +1,21 @@
+from pathlib import Path
+
+from cennik import get_membership_table_text
+
+
+PROJECT_ROOT = Path(__file__).resolve().parent
+SCHEDULE_FILE = PROJECT_ROOT / "grafik.csv"
+
+
 def show_workout_schedule():
-    with open('grafik.csv', mode='r', encoding='utf-8') as file:
+    if not SCHEDULE_FILE.exists():
+        print("Grafik nie jest jeszcze dostępny.")
+        return
+
+    with SCHEDULE_FILE.open(mode="r", encoding="utf-8") as file:
         content = file.read()
         print(content)
 
 
 def show_membership():
-    print("Wypisuje membership")
-    print("===================")
+    print(get_membership_table_text())
