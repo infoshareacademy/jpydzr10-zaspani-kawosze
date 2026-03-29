@@ -1,103 +1,102 @@
+
 from funkcje import show_workout_schedule, show_membership
 
-print("SIŁOWNIA ZASPANI")
-<<<<<<< Updated upstream
-menu_options = {
-    1 : {
+
+MENU_OPTIONS = {
+    1: {
         "name": "Zajęcia",
-        "function": show_workout_schedule
+        "function": show_workout_schedule,
     },
-    2 : {
-        1 : {
+    2: {
+        1: {
             "name": "Karnety",
-            "function": show_membership
+            "function": show_membership,
         },
-        2 : {
-            "name": 'Pakiety dla firm',
-            "function": show_workout_schedule
+        2: {
+            "name": "Pakiety dla firm",
+            "function": show_workout_schedule,
         },
-        3 : {
-            "name": 'Tutaj coś jeszcze dodać można',
-            "function": show_workout_schedule
+        3: {
+            "name": "Tutaj coś jeszcze dodać można",
+            "function": show_workout_schedule,
         },
-        4 : {
-            "name": 'Powrót',
+        4: {
+            "name": "Powrót",
         },
     },
-    3 : {
+    3: {
         "name": "FAQ",
-        "function": show_workout_schedule
+        "function": show_workout_schedule,
     },
-    4 : {
+    4: {
         "name": "Kontakt",
-        "function": show_workout_schedule
+        "function": show_workout_schedule,
     },
-    5 : {
+    5: {
         "name": "Grafik",
-        "function": show_workout_schedule
+        "function": show_workout_schedule,
     },
-    6 : {
+    6: {
         "name": "Loguje się",
-        "function": show_workout_schedule
+        "function": show_workout_schedule,
     },
-    7 : {
+    7: {
         "name": "Wyjście",
     },
 }
 
-current_menu = menu_options
 
-while True:
-    for key, value in current_menu.items():
+def display_menu(menu_options):
+    for key, value in menu_options.items():
         if "name" in value:
             print(f"{key}. {value['name']}")
         else:
             print(f"{key}. Cennik")
-            for k, v in value.items():
-                print(f"    {k}. {v['name']}")
+            for subkey, submenu_option in value.items():
+                print(f"    {subkey}. {submenu_option['name']}")
 
+
+def get_menu_choice():
     try:
-        menu_choice = int(input("Wybierz numer z listy: \n"))
+        return int(input("Wybierz numer z listy: \n"))
     except ValueError:
         print("Wprowadź liczbę z zakresu 1-7")
-        continue
+        return None
 
-    if menu_choice not in current_menu:
-        print("Podany numer nie znajduje się na liście, proszę podać poprawny numer \n")
-        continue
 
-    subvalue = current_menu[menu_choice]
+def main():
+    print("SIŁOWNIA ZASPANI")
+    current_menu = MENU_OPTIONS
 
-    if "name" not in subvalue:
-        current_menu = subvalue
-        continue
+    while True:
+        display_menu(current_menu)
+        menu_choice = get_menu_choice()
 
-    if subvalue["name"] == "Powrót":
-        current_menu = menu_options
-        continue
+        if menu_choice is None:
+            continue
 
-    if subvalue["name"] == "Wyjście":
-        break
+        if menu_choice not in current_menu:
+            print("Podany numer nie znajduje się na liście, proszę podać poprawny numer \n")
+            continue
 
-    if "function" in subvalue:
-        subvalue["function"]()
+        selected_option = current_menu[menu_choice]
 
-print("Kończymy na dziś")
-=======
-# TODO opracowanie graficzne menu
-print("cennik")
-# TODO opracować cennik - print zawartość cennika, opracować graficznie
-print("kontakt")
-# TODO dodać informacje kontaktowe - adres, tel., e-mail, mapa
-# TODO e-mail - odnośnik otwierający nową wiadomość, tel. odnośnik umożliwiający wykonanie połączenia, mapa - odniesienie do google maps
-print("login")
-# TODO wprowadzić możliwość logowania się na konta: użytkownika siłowni, pracownika, admina? Stworzenie bazy klientów - class ludzie -
-# stworzenie kont pracowniczych - grafik pracy
-print("grafik")
-# TODO stworzyć tabelę z terminami dostępności siłowni - możliwość dla użytkownika zabookowania terminu?
-print("sklep")
-# TODO stworzyć koszyk z możliwością zakupów: zabookowania terminu z uwzględnieniem kart sportowych, z płatnością online oraz gotówkową.
-# Zakup różności innych.
-print("FAQ")
-# TODO stworzyć listę zapytań i odpowiedzi
->>>>>>> Stashed changes
+        if "name" not in selected_option:
+            current_menu = selected_option
+            continue
+
+        if selected_option["name"] == "Powrót":
+            current_menu = MENU_OPTIONS
+            continue
+
+        if selected_option["name"] == "Wyjście":
+            break
+
+        if "function" in selected_option:
+            selected_option["function"]()
+
+    print("Kończymy na dziś")
+
+
+if __name__ == "__main__":
+    main()
