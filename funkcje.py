@@ -1,7 +1,5 @@
-from pathlib import Path
-
 from cennik import get_membership_table_text
-
+from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parent
 SCHEDULE_FILE = PROJECT_ROOT / "grafik.csv"

@@ -1,6 +1,7 @@
 from funkcje import show_workout_schedule, show_membership
 
 
+
 MENU_OPTIONS = {
     1: {
         "name": "Zajęcia",

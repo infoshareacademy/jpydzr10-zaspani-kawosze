@@ -17,3 +17,4 @@
 # # Zakup różności innych.
 # print("FAQ")
 # #TODO stworzyć listę zapytań i odpowiedzi
+
