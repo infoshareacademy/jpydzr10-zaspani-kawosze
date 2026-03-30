@@ -4,6 +4,9 @@ from pathlib import Path
 from user import GymMember
 
 
+# Importujemy json, bo dane członków zapisujemy do pliku JSON.
+# Path używamy do wygodnej pracy ze ścieżkami do plików.
+
 # Tu ustawiamy domyślną ścieżkę do pliku z zapisanymi członkami.
 # Dzięki temu wszystkie funkcje korzystają z jednego miejsca zapisu danych.
 PROJECT_ROOT = Path(__file__).resolve().parent
@@ -34,6 +37,8 @@ def save_members(members, file_path=MEMBERS_FILE):
         json.dump(serialized_members, file, ensure_ascii=False, indent=2)
 
 
+# Ta funkcja dodaje nowego członka do aktualnej listy.
+# Po dodaniu zapisujemy od razu całą listę z powrotem do pliku.
 def add_member(member, file_path=MEMBERS_FILE):
     members = load_members(file_path)
     members.append(member)
@@ -41,6 +46,9 @@ def add_member(member, file_path=MEMBERS_FILE):
     return members
 
 
+# Ta funkcja szuka członka po numerze karty członkowskiej.
+# Jeśli znajdzie pasujący wpis, podmienia dane na nowe i zapisuje plik.
+# Jeśli takiego członka nie ma, zwraca False.
 def update_member(membership_card, updated_member, file_path=MEMBERS_FILE):
     members = load_members(file_path)
 
