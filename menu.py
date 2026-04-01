@@ -1,4 +1,4 @@
-from funkcje import show_workout_schedule, show_membership
+from funkcje import show_workout_schedule, show_membership, show_faq, show_contact
 
 
 MENU_OPTIONS = {
@@ -21,11 +21,11 @@ MENU_OPTIONS = {
     },
     3: {
         "name": "FAQ",
-        "function": show_workout_schedule,
+        "function": show_faq,
     },
     4: {
         "name": "Kontakt",
-        "function": show_workout_schedule,
+        "function": show_contact,
     },
     5: {
         "name": "Grafik",

@@ -19,3 +19,12 @@ def show_workout_schedule():
 
 def show_membership():
     print(get_membership_table_text())
+
+def show_faq():
+    with open('Faq.txt', 'r', encoding="utf-8") as file:
+        print(file.read())
+
+def show_contact():
+    with open('Kontakt.txt', 'r', encoding="utf-8") as file:
+        print(file.read())
+
