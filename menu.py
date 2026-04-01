@@ -3,21 +3,12 @@ from funkcje import show_workout_schedule, show_membership, show_faq, show_conta
 
 MENU_OPTIONS = {
     1: {
-        "name": "Zajęcia",
+        "name": "Grafik",
         "function": show_workout_schedule,
     },
     2: {
-        1: {
-            "name": "Karnety",
-            "function": show_membership,
-        },
-        2: {
-            "name": "Pakiety dla firm",
-            "function": show_workout_schedule,
-        },
-        3: {
-            "name": "Powrót",
-        },
+        "name": "Cennik",
+        "function": show_membership,
     },
     3: {
         "name": "FAQ",
@@ -28,14 +19,23 @@ MENU_OPTIONS = {
         "function": show_contact,
     },
     5: {
-        "name": "Grafik",
-        "function": show_workout_schedule,
+        1: {
+            "name": "Dodaj usera",
+            "function": show_membership,
+        },
+        2: {
+            "name": "Usuń usera",
+            "function": show_workout_schedule,
+        },
+        3: {
+            "name": "Wyświetl naszych klubowiczów",
+            "function": show_workout_schedule,
+        },
+        4: {
+            "name": "Powrót",
+        },
     },
     6: {
-        "name": "Loguje się",
-        "function": show_workout_schedule,
-    },
-    7: {
         "name": "Wyjście",
     },
 }
@@ -46,7 +46,7 @@ def display_menu(menu_options):
         if "name" in value:
             print(f"{key}. {value['name']}")
         else:
-            print(f"{key}. Cennik")
+            print(f"{key}. Klubowicze")
             for subkey, submenu_option in value.items():
                 print(f"    {subkey}. {submenu_option['name']}")
 
