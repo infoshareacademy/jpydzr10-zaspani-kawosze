@@ -16,10 +16,6 @@ MENU_OPTIONS = {
             "function": show_workout_schedule,
         },
         3: {
-            "name": "Tutaj coś jeszcze dodać można",
-            "function": show_workout_schedule,
-        },
-        4: {
             "name": "Powrót",
         },
     },
