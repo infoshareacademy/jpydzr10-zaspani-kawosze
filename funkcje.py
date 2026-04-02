@@ -25,9 +25,6 @@ def show_contact():
     with open('Kontakt.txt', 'r', encoding="utf-8") as file:
         print(file.read())
 
-
-
-
 from prettytable import from_csv
 
 def kawosze_cennik():
@@ -39,3 +36,4 @@ def kawosze_grafik():
     with open("grafik _zaspani_k.csv") as file:
         table = from_csv(file)
         return table
+
