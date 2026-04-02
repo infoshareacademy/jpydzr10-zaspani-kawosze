@@ -1,11 +1,10 @@
 
 from pathlib import Path
 
-from cennik import get_membership_table_text
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent
-SCHEDULE_FILE = PROJECT_ROOT / "grafik.csv"
+SCHEDULE_FILE = PROJECT_ROOT / "grafik _zaspani_k.csv"
 
 
 def show_workout_schedule():
@@ -17,9 +16,6 @@ def show_workout_schedule():
         content = file.read()
         print(content)
 
-
-def show_membership():
-    print(get_membership_table_text())
 
 def show_faq():
     with open('Faq.txt', 'r', encoding="utf-8") as file:
