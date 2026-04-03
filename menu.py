@@ -4,16 +4,16 @@ from funkcje import kawosze_cennik, kawosze_grafik, show_faq, show_contact
 MENU_OPTIONS = {
     1: {
         "name": "Zajęcia",
-        "function": kawosze_grafik(),
+        "function": kawosze_grafik,
     },
     2: {
         1: {
             "name": "Karnety",
-            "function": kawosze_cennik(),
+            "function": kawosze_cennik,
         },
         2: {
             "name": "Pakiety dla firm",
-            "function": kawosze_cennik(),
+            "function": kawosze_cennik,
         },
         3: {
             "name": "Powrót",
@@ -29,11 +29,11 @@ MENU_OPTIONS = {
     },
     5: {
         "name": "Grafik",
-        "function": kawosze_grafik(),
+        "function": kawosze_grafik,
     },
     6: {
         "name": "Loguje się",
-        "function": kawosze_grafik(),
+        "function": kawosze_grafik,
     },
     7: {
         "name": "Wyjście",
