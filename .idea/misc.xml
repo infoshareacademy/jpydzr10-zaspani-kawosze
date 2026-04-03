@@ -3,5 +3,9 @@
   <component name="Black">
     <option name="sdkName" value="Python 3.12 (jpydzr10-zaspani-kawosze)" />
   </component>
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.12 (jpydzr10-zaspani-kawosze)" project-jdk-type="Python SDK" />
+=======
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.12 (jpydzr10-zaspani-kawosze) (2)" project-jdk-type="Python SDK" />
+>>>>>>> trial_branch
 </project>
