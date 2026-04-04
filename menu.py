@@ -1,6 +1,5 @@
 from funkcje import show_workout_schedule, show_membership, show_faq, show_contact
 
-
 MENU_OPTIONS = {
     1: {
         "name": "Zajęcia",
@@ -40,8 +39,12 @@ MENU_OPTIONS = {
     },
 }
 
+def print_separator(char="—", length=40):
+    """Pomocnicza funkcja do rysowania linii oddzielających sekcje."""
+    print(char * length)
 
 def display_menu(menu_options):
+    print_separator("=")
     for key, value in menu_options.items():
         if "name" in value:
             print(f"{key}. {value['name']}")
@@ -49,18 +52,20 @@ def display_menu(menu_options):
             print(f"{key}. Cennik")
             for subkey, submenu_option in value.items():
                 print(f"    {subkey}. {submenu_option['name']}")
-
+    print_separator("=")
 
 def get_menu_choice():
     try:
-        return int(input("Wybierz numer z listy: \n"))
+        return int(input("Wybierz numer z listy: "))
     except ValueError:
-        print("Wprowadź liczbę z zakresu 1-7")
+        print("\n[!] Błąd: Wprowadź liczbę z zakresu menu.")
         return None
 
-
 def main():
-    print("SIŁOWNIA ZASPANI")
+    print_separator("#")
+    print("        SIŁOWNIA ZASPANI")
+    print_separator("#")
+    
     current_menu = MENU_OPTIONS
 
     while True:
@@ -71,27 +76,34 @@ def main():
             continue
 
         if menu_choice not in current_menu:
-            print("Podany numer nie znajduje się na liście, proszę podać poprawny numer \n")
+            print("\n[!] Podany numer nie znajduje się na liście.\n")
             continue
 
         selected_option = current_menu[menu_choice]
+
+        if selected_option.get("name") == "Wyjście":
+            break
+
+        if selected_option.get("name") == "Powrót":
+            current_menu = MENU_OPTIONS
+            continue
 
         if "name" not in selected_option:
             current_menu = selected_option
             continue
 
-        if selected_option["name"] == "Powrót":
-            current_menu = MENU_OPTIONS
-            continue
-
-        if selected_option["name"] == "Wyjście":
-            break
-
         if "function" in selected_option:
+            print("\n") # Odstęp przed treścią funkcji
             selected_option["function"]()
+            print("\n") # Odstęp po treści funkcji
+            
+            current_menu = {
+                1: {"name": "Powrót"}
+            }
 
-    print("Kończymy na dziś")
-
+    print_separator("-")
+    print("Kończymy na dziś. Do zobaczenia na treningu!")
+    print_separator("-")
 
 if __name__ == "__main__":
     main()
