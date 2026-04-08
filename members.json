@@ -1,30 +1,14 @@
 [
   {
-    "name": [
-      "Bartłomiej"
-    ],
-    "surname": [
-      "Stawicki"
-    ],
-    "tel_no": [
-      "11111111111"
-    ],
-    "membership_card": [
-      "777"
-    ]
+    "name": "Jan",
+    "surname": "Kowalski",
+    "tel_no": "120298347",
+    "membership_card": "123"
   },
   {
-    "name": [
-      "Anna"
-    ],
-    "surname": [
-      "test"
-    ],
-    "tel_no": [
-      "11111111111"
-    ],
-    "membership_card": [
-      "111111111111"
-    ]
+    "name": "Bartłomiej",
+    "surname": "Stawicki",
+    "tel_no": "111111111",
+    "membership_card": "777"
   }
 ]

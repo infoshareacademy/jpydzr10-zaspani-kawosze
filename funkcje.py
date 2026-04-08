@@ -1,5 +1,5 @@
 from pathlib import Path
-from members_storage import add_member_to_storage, load_members, delete_member
+from members_storage import add_member_to_storage, load_members, delete_member, update_member
 from cennik import get_membership_table_text
 from user import GymMember
 
@@ -32,23 +32,25 @@ def show_contact():
 #Funkcja pobiera dane od usera  następnie przekazuje je do zmiennej member (w oparciu o klasę GymMember)
 # i  zapisuje przy użyciu funkcji add_member_to_storage
 def add_member():
-    name = input("Podaj imię: \n"),
-    surname = input("Podaj nazwisko: \n"),
-    tel_no = input("Podaj telefonu: \n"),
-    membership_card = input("Wprowadź numer karty: \n"),
+    name = input("Podaj imię: \n")
+    surname = input("Podaj nazwisko: \n")
+    tel_no = input("Podaj telefonu: \n")
+    membership_card = input("Wprowadź numer karty: \n")
 
-    member = GymMember(name = name,
-                       surname = surname,
-                       tel_no = tel_no,
-                       membership_card = membership_card,
-                       )
+    member = GymMember(
+        name = name,
+        surname = surname,
+        tel_no = tel_no,
+        membership_card = membership_card,
+    )
 
     add_member_to_storage(member)
+    print(f"Dodano użytkownika {name} {surname} o numerze karty {membership_card}")
 
 def show_members():
     members = load_members()
     if not members:
-        print("Brak zapisanych klubowiczów")
+        print("Brak klubowiczów w bazie")
         return
 
     print("\n----- Lista klubowiczów -----")
@@ -79,6 +81,36 @@ def remove_member():
     else:
         print("Nieprawidłowy numer lub brak użytkownika")
 
+def change_member():
+    members = load_members()
 
+    if not members:
+        print("Brak klubowiczów do edycji.")
+        return
+
+    show_members()
+    card = input("Podaj numer karty użytkownika do edycji: ").strip()
+
+    member_to_edit = next((m for m in members if m.membership_card == card), None)
+
+    if member_to_edit is None:
+        print(f"Nie znaleziono użytkownika z kartą {card}")
+        return
+
+    name = input(f"Nowe imię [{member_to_edit.name}]: ").strip() or member_to_edit.name
+    surname = input(f"Nowe nazwisko [{member_to_edit.surname}]: ").strip() or member_to_edit.surname
+    tel_no = input(f"Nowy tel. [{member_to_edit.tel_no}]: ").strip() or member_to_edit.tel_no
+
+    updated_member = GymMember(
+        name = name,
+        surname = surname,
+        tel_no = tel_no,
+        membership_card = member_to_edit.membership_card
+    )
+
+    if update_member(member_to_edit.membership_card, updated_member):
+        print("Użytkownik zaktualizowany.")
+    else:
+        print("Nie udało się zaktualizować użytkownika.")
 
 

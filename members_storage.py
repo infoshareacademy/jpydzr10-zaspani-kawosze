@@ -15,13 +15,6 @@ MEMBERS_FILE = PROJECT_ROOT / "members.json"
 
 # Ta funkcja wczytuje członków z pliku JSON.
 # Jeśli plik jeszcze nie istnieje, zwracamy pustą listę zamiast błędu.
-# def load_members(file_path):
-#     try:
-#         with open(file_path, "r") as file:
-#             data = json.load(file)
-#             return [GymMember.from_dict(member) for member in data]
-#     except FileNotFoundError:
-#         return []
 def load_members(file_path=MEMBERS_FILE):
     storage_path = Path(file_path)
 
@@ -31,8 +24,19 @@ def load_members(file_path=MEMBERS_FILE):
     with storage_path.open("r", encoding="utf-8") as file:
         raw_data = json.load(file)
 
-    return [GymMember.from_dict(member_data) for member_data in raw_data]
+    # return [GymMember.from_dict(member_data) for member_data in raw_data]
+    members = []
+    for member_data in raw_data:
 
+        clean_data = {
+            "name": member_data["name"][0] if isinstance(member_data["name"], list) else member_data["name"],
+            "surname": member_data["surname"][0] if isinstance(member_data["surname"], list) else member_data["surname"],
+            "tel_no": member_data["tel_no"][0] if isinstance(member_data["tel_no"], list) else member_data["tel_no"],
+            "membership_card": member_data["membership_card"][0] if isinstance(member_data["membership_card"],list) else member_data["membership_card"],
+        }
+        members.append(GymMember.from_dict(clean_data))
+
+    return members
 
 # Ta funkcja zapisuje całą listę członków do pliku JSON.
 # Najpierw zamieniamy obiekty na słowniki, żeby JSON mógł je zapisać.
