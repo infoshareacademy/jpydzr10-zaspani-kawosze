@@ -66,3 +66,20 @@ def update_member(membership_card, updated_member, file_path=MEMBERS_FILE):
             return True
 
     return False
+
+#Funkcja usuwania członka po indexie, najprostsza wersja
+def delete_member(index, file_path=MEMBERS_FILE):
+    members = load_members(file_path)
+
+    if not members:
+        return False
+
+    if index < 0 or index >= len(members):
+        return False
+
+    members.pop(index)
+    save_members(members, file_path)
+    return True
+
+
+

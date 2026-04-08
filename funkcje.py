@@ -1,5 +1,5 @@
 from pathlib import Path
-from members_storage import add_member_to_storage, load_members
+from members_storage import add_member_to_storage, load_members, delete_member
 from cennik import get_membership_table_text
 from user import GymMember
 
@@ -58,6 +58,27 @@ def show_members():
         print(f"    Tel: {member.tel_no}")
         print(f"    Karta: {member.membership_card}")
         print("-" * 30)
+
+def remove_member():
+    members = load_members()
+
+    if not members:
+        print ("Brak użytkowników do usunięcia")
+        return
+    show_members()
+    try:
+        choice = int(input("Podaj numer który chcesz usunąć: \n"))
+        index = choice - 1
+    except ValueError:
+        print("Nieprawidłowy numer")
+        return
+
+    succes = delete_member(index)
+    if succes:
+        print("Użytkownik usunięty.")
+    else:
+        print("Nieprawidłowy numer lub brak użytkownika")
+
 
 
 
