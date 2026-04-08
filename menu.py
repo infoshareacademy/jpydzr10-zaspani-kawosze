@@ -1,4 +1,4 @@
-from funkcje import show_workout_schedule, show_membership, show_faq, show_contact
+from funkcje import show_workout_schedule, show_membership, show_faq, show_contact, add_member, show_members
 
 
 MENU_OPTIONS = {
@@ -21,7 +21,7 @@ MENU_OPTIONS = {
     5: {
         1: {
             "name": "Dodaj usera",
-            "function": show_membership,
+            "function": add_member,
         },
         2: {
             "name": "Usuń usera",
@@ -29,7 +29,7 @@ MENU_OPTIONS = {
         },
         3: {
             "name": "Wyświetl naszych klubowiczów",
-            "function": show_workout_schedule,
+            "function": show_members,
         },
         4: {
             "name": "Powrót",

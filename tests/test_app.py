@@ -2,7 +2,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from members_storage import add_member, load_members, save_members, update_member
+from members_storage import add_member_to_storage, load_members, save_members, update_member
 from user import GymMember, Person
 
 
@@ -75,7 +75,7 @@ class StorageTests(unittest.TestCase):
             file_path = Path(temp_dir) / "members.json"
             member = GymMember("Ola", "Zielinska", "555444333", "M-3")
 
-            members = add_member(member, file_path)
+            members = add_member_to_storage(member, file_path)
 
         self.assertEqual(1, len(members))
         self.assertEqual("M-3", members[0].membership_card)

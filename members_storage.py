@@ -15,6 +15,13 @@ MEMBERS_FILE = PROJECT_ROOT / "members.json"
 
 # Ta funkcja wczytuje członków z pliku JSON.
 # Jeśli plik jeszcze nie istnieje, zwracamy pustą listę zamiast błędu.
+# def load_members(file_path):
+#     try:
+#         with open(file_path, "r") as file:
+#             data = json.load(file)
+#             return [GymMember.from_dict(member) for member in data]
+#     except FileNotFoundError:
+#         return []
 def load_members(file_path=MEMBERS_FILE):
     storage_path = Path(file_path)
 
@@ -39,7 +46,7 @@ def save_members(members, file_path=MEMBERS_FILE):
 
 # Ta funkcja dodaje nowego członka do aktualnej listy.
 # Po dodaniu zapisujemy od razu całą listę z powrotem do pliku.
-def add_member(member, file_path=MEMBERS_FILE):
+def add_member_to_storage(member, file_path=MEMBERS_FILE):
     members = load_members(file_path)
     members.append(member)
     save_members(members, file_path)

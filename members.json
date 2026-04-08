@@ -1,1 +1,30 @@
-[]
+[
+  {
+    "name": [
+      "Bartłomiej"
+    ],
+    "surname": [
+      "Stawicki"
+    ],
+    "tel_no": [
+      "111 111 111"
+    ],
+    "membership_card": [
+      "777"
+    ]
+  },
+  {
+    "name": [
+      "Anna"
+    ],
+    "surname": [
+      "test"
+    ],
+    "tel_no": [
+      "0394820458230"
+    ],
+    "membership_card": [
+      "7772"
+    ]
+  }
+]
