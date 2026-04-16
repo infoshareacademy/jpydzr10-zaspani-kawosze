@@ -6,9 +6,15 @@
     "membership_card": "123"
   },
   {
-    "name": "Bartłomiej",
+    "name": "Bartlomiej",
     "surname": "Stawicki",
     "tel_no": "111111111",
     "membership_card": "777"
+  },
+  {
+    "name": "Marcin",
+    "surname": "Kowalski",
+    "tel_no": "123456789",
+    "membership_card": "987654321"
   }
 ]

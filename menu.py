@@ -34,7 +34,7 @@ MENU_OPTIONS = {
             "name": "Wyświetl naszych klubowiczów",
             "function": show_members,
         },
-        5: {
+        0: {
             "name": "Powrót",
         },
     },
@@ -102,7 +102,7 @@ def main():
             print("\n") # Odstęp po treści funkcji
             
             current_menu = {
-                1: {"name": "Powrót"}
+                0: {"name": "Powrót"}
             }
 
     print_separator("-")
