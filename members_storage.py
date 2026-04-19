@@ -24,8 +24,19 @@ def load_members(file_path=MEMBERS_FILE):
     with storage_path.open("r", encoding="utf-8") as file:
         raw_data = json.load(file)
 
-    return [GymMember.from_dict(member_data) for member_data in raw_data]
+    # return [GymMember.from_dict(member_data) for member_data in raw_data]
+    members = []
+    for member_data in raw_data:
 
+        clean_data = {
+            "name": member_data["name"][0] if isinstance(member_data["name"], list) else member_data["name"],
+            "surname": member_data["surname"][0] if isinstance(member_data["surname"], list) else member_data["surname"],
+            "tel_no": member_data["tel_no"][0] if isinstance(member_data["tel_no"], list) else member_data["tel_no"],
+            "membership_card": member_data["membership_card"][0] if isinstance(member_data["membership_card"],list) else member_data["membership_card"],
+        }
+        members.append(GymMember.from_dict(clean_data))
+
+    return members
 
 # Ta funkcja zapisuje całą listę członków do pliku JSON.
 # Najpierw zamieniamy obiekty na słowniki, żeby JSON mógł je zapisać.
@@ -39,7 +50,7 @@ def save_members(members, file_path=MEMBERS_FILE):
 
 # Ta funkcja dodaje nowego członka do aktualnej listy.
 # Po dodaniu zapisujemy od razu całą listę z powrotem do pliku.
-def add_member(member, file_path=MEMBERS_FILE):
+def add_member_to_storage(member, file_path=MEMBERS_FILE):
     members = load_members(file_path)
     members.append(member)
     save_members(members, file_path)
@@ -59,3 +70,20 @@ def update_member(membership_card, updated_member, file_path=MEMBERS_FILE):
             return True
 
     return False
+
+#Funkcja usuwania członka po indexie, najprostsza wersja
+def delete_member(index, file_path=MEMBERS_FILE):
+    members = load_members(file_path)
+
+    if not members:
+        return False
+
+    if index < 0 or index >= len(members):
+        return False
+
+    members.pop(index)
+    save_members(members, file_path)
+    return True
+
+
+
