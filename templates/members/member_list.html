@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Klubowicze{% endblock %}
+
+{% block content %}
+<h2>Lista klubowiczow</h2>
+
+<p>
+    <a href="{% url 'members:add' %}">Dodaj klubowicza</a>
+</p>
+
+{% if members %}
+    <table border="1" cellpadding="6">
+        <thead>
+            <tr>
+                <th>Imie</th>
+                <th>Nazwisko</th>
+                <th>Telefon</th>
+                <th>Numer karty</th>
+                <th>Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for member in members %}
+                <tr>
+                    <td>{{ member.name }}</td>
+                    <td>{{ member.surname }}</td>
+                    <td>{{ member.tel_no }}</td>
+                    <td>{{ member.membership_card }}</td>
+                    <td>
+                        <a href="{% url 'members:edit' member.id %}">Edytuj</a>
+                        <a href="{% url 'members:delete' member.id %}">Usun</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>Brak klubowiczow w bazie.</p>
+{% endif %}
+{% endblock %}

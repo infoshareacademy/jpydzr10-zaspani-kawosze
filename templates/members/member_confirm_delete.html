@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Usun klubowicza{% endblock %}
+
+{% block content %}
+<h2>Usun klubowicza</h2>
+
+<p>Czy na pewno chcesz usunac: {{ member.name }} {{ member.surname }}?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Tak, usun</button>
+</form>
+
+<p>
+    <a href="{% url 'members:list' %}">Anuluj</a>
+</p>
+{% endblock %}
