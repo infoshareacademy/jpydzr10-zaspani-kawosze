@@ -1,2 +1,19 @@
+# --- Glowne biblioteki projektu ---
+# Framework WWW, na ktorym dziala aplikacja Django.
 Django==6.0.4
-prettytable
+
+# Biblioteka uzywana w starszych skryptach konsolowych do tabel w terminalu.
+prettytable==3.17.0
+
+
+# --- Sugestie na pozniej ---
+# PostgreSQL przyda sie dopiero po zmianie bazy ze SQLite na PostgreSQL.
+# psycopg==3.3.4
+# psycopg-binary==3.3.4
+
+# Ponizsze zaleznosci Django/prettytable instaluja sie automatycznie.
+# Mozna je dopisac pozniej, jesli bedzie potrzebne pelne zamrozenie wersji.
+# asgiref==3.11.1
+# sqlparse==0.5.5
+# tzdata==2026.2
+# wcwidth==0.6.0
