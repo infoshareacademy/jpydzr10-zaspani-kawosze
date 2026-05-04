@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Silownia Zaspani{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>Silownia Zaspani</h1>
+        <nav>
+            <a href="{% url 'members:home' %}">Home</a>
+            <a href="{% url 'members:price_list' %}">Cennik</a>
+            <a href="{% url 'members:schedule' %}">Grafik</a>
+            <a href="{% url 'members:faq' %}">FAQ</a>
+            <a href="{% url 'members:contact' %}">Kontakt</a>
+            <a href="{% url 'members:list' %}">Klubowicze</a>
+            <a href="/admin/">Panel administratora</a>
+        </nav>
+        <hr>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
