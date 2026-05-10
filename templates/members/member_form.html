@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<h2>{{ page_title }}</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">{{ button_label }}</button>
+</form>
+
+<p>
+    <a href="{% url 'members:list' %}">Wroc do listy</a>
+</p>
+{% endblock %}
