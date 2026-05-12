@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib import messages
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
@@ -66,6 +67,7 @@ def member_create(request: HttpRequest) -> HttpResponse:
         form = GymMemberForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, "Klubowicz zostal pomyslnie dodany.")
             return redirect("members:list")
     else:
         form = GymMemberForm()
@@ -88,6 +90,7 @@ def member_update(request: HttpRequest, member_id: int) -> HttpResponse:
         form = GymMemberForm(request.POST, instance=member)
         if form.is_valid():
             form.save()
+            messages.success(request, "Dane klubowicza zostaly pomyslnie zaktualizowane.")
             return redirect("members:list")
     else:
         form = GymMemberForm(instance=member)
@@ -108,6 +111,7 @@ def member_delete(request: HttpRequest, member_id: int) -> HttpResponse:
 
     if request.method == "POST":
         member.delete()
+        messages.success(request, "Klubowicz zostal pomyslnie usuniety.")
         return redirect("members:list")
 
     return render(
