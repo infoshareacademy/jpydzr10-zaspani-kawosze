@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Grafik{% endblock %}
+
+{% block content %}
+<h2>Grafik</h2>
+
+{% if entries %}
+    <table border="1" cellpadding="6">
+        <thead>
+            <tr>
+                <th>Godzina</th>
+                <th>Poniedzialek</th>
+                <th>Wtorek</th>
+                <th>Sroda</th>
+                <th>Czwartek</th>
+                <th>Piatek</th>
+                <th>Sobota</th>
+                <th>Niedziela</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in entries %}
+                <tr>
+                    <td>{{ entry.time_range }}</td>
+                    <td>{{ entry.monday }}</td>
+                    <td>{{ entry.tuesday }}</td>
+                    <td>{{ entry.wednesday }}</td>
+                    <td>{{ entry.thursday }}</td>
+                    <td>{{ entry.friday }}</td>
+                    <td>{{ entry.saturday }}</td>
+                    <td>{{ entry.sunday }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>Brak danych grafiku do wyswietlenia.</p>
+{% endif %}
+{% endblock %}

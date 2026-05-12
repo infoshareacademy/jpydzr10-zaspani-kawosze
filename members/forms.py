@@ -8,8 +8,8 @@ class GymMemberForm(forms.ModelForm):
         model = GymMember
         fields = ["name", "surname", "tel_no", "membership_card"]
         labels = {
-            "name": "Imię",
+            "name": "Imie",
             "surname": "Nazwisko",
             "tel_no": "Numer telefonu",
-            "membership_card": "Numer karty członkowskiej",
+            "membership_card": "Numer karty czlonkowskiej",
         }

@@ -1,12 +1,56 @@
+from django.conf import settings
+from django.contrib import messages
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
 from members.forms import GymMemberForm
-from members.models import GymMember
+from members.models import GymMember, PriceItem, ScheduleEntry
 
 
 def home(request: HttpRequest) -> HttpResponse:
-    return redirect("members:list")
+    return render(request, "home.html")
+
+
+def faq(request: HttpRequest) -> HttpResponse:
+    faq_path = settings.BASE_DIR / "Faq.txt"
+    questions = _read_text_lines(faq_path)
+
+    return render(
+        request,
+        "faq.html",
+        {"questions": questions},
+    )
+
+
+def contact(request: HttpRequest) -> HttpResponse:
+    contact_path = settings.BASE_DIR / "Kontakt.txt"
+    contact_lines = _read_text_lines(contact_path)
+
+    return render(
+        request,
+        "contact.html",
+        {"contact_lines": contact_lines},
+    )
+
+
+def price_list(request: HttpRequest) -> HttpResponse:
+    prices = PriceItem.objects.all()
+
+    return render(
+        request,
+        "price_list.html",
+        {"prices": prices},
+    )
+
+
+def schedule(request: HttpRequest) -> HttpResponse:
+    entries = ScheduleEntry.objects.all()
+
+    return render(
+        request,
+        "schedule.html",
+        {"entries": entries},
+    )
 
 
 def member_list(request: HttpRequest) -> HttpResponse:
@@ -23,6 +67,7 @@ def member_create(request: HttpRequest) -> HttpResponse:
         form = GymMemberForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, "Klubowicz zostal pomyslnie dodany.")
             return redirect("members:list")
     else:
         form = GymMemberForm()
@@ -45,6 +90,7 @@ def member_update(request: HttpRequest, member_id: int) -> HttpResponse:
         form = GymMemberForm(request.POST, instance=member)
         if form.is_valid():
             form.save()
+            messages.success(request, "Dane klubowicza zostaly pomyslnie zaktualizowane.")
             return redirect("members:list")
     else:
         form = GymMemberForm(instance=member)
@@ -65,6 +111,7 @@ def member_delete(request: HttpRequest, member_id: int) -> HttpResponse:
 
     if request.method == "POST":
         member.delete()
+        messages.success(request, "Klubowicz zostal pomyslnie usuniety.")
         return redirect("members:list")
 
     return render(
@@ -73,4 +120,13 @@ def member_delete(request: HttpRequest, member_id: int) -> HttpResponse:
         {"member": member},
     )
 
-# Create your views here.
+
+def _read_text_lines(file_path):
+    if not file_path.exists():
+        return []
+
+    return [
+        line.strip()
+        for line in file_path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
