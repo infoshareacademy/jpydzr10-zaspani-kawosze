@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Strona glowna{% endblock %}
+
+{% block content %}
+<h2>Witamy w Silowni Zaspani</h2>
+
+<p>
+    To jest webowa wersja aplikacji do obslugi klubowiczow, cennika i informacji kontaktowych.
+</p>
+
+<ul>
+    <li><a href="{% url 'members:list' %}">Przejdz do listy klubowiczow</a></li>
+    <li><a href="{% url 'members:price_list' %}">Sprawdz cennik</a></li>
+    <li><a href="{% url 'members:schedule' %}">Zobacz grafik</a></li>
+    <li><a href="{% url 'members:faq' %}">Zobacz FAQ</a></li>
+    <li><a href="{% url 'members:contact' %}">Kontakt</a></li>
+</ul>
+{% endblock %}

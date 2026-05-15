@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Cennik{% endblock %}
+
+{% block content %}
+<h2>Cennik</h2>
+
+{% if prices %}
+    <table border="1" cellpadding="6">
+        <thead>
+            <tr>
+                <th>Rodzaj wejscia</th>
+                <th>Ilosc wejsc/mies</th>
+                <th>Cena</th>
+                <th>Sposob platnosci</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for price in prices %}
+                <tr>
+                    <td>{{ price.entry_type }}</td>
+                    <td>{{ price.visits_per_month }}</td>
+                    <td>{{ price.price }}</td>
+                    <td>{{ price.payment_method }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>Brak danych cennika do wyswietlenia.</p>
+{% endif %}
+{% endblock %}

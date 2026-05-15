@@ -1,20 +1,19 @@
-
-from funkcje import kawosze_cennik, kawosze_grafik, show_faq, show_contact
+from funkcje import show_workout_schedule, show_membership, show_faq, show_contact
 
 
 MENU_OPTIONS = {
     1: {
         "name": "Zajęcia",
-        "function": kawosze_grafik,
+        "function": show_workout_schedule,
     },
     2: {
         1: {
             "name": "Karnety",
-            "function": kawosze_cennik,
+            "function": show_membership,
         },
         2: {
             "name": "Pakiety dla firm",
-            "function": kawosze_cennik,
+            "function": show_workout_schedule,
         },
         3: {
             "name": "Powrót",
@@ -30,11 +29,11 @@ MENU_OPTIONS = {
     },
     5: {
         "name": "Grafik",
-        "function": kawosze_grafik,
+        "function": show_workout_schedule,
     },
     6: {
         "name": "Loguje się",
-        "function": kawosze_grafik,
+        "function": show_workout_schedule,
     },
     7: {
         "name": "Wyjście",
