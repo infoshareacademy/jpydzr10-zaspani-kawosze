@@ -6,6 +6,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from members.forms import GymMemberForm
 from members.models import GymMember, PriceItem, ScheduleEntry
 
+from .models import ScheduleEntry
 
 def home(request: HttpRequest) -> HttpResponse:
     return render(request, "home.html")
@@ -130,3 +131,13 @@ def _read_text_lines(file_path):
         for line in file_path.read_text(encoding="utf-8").splitlines()
         if line.strip()
     ]
+
+def schedule_view(request):
+
+    schedule = ScheduleEntry.objects.all()
+
+    return render(
+        request,
+        "schedule.html",
+        {"schedule": schedule}
+    )
