@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from members.forms import GymMemberForm
 from members.models import GymMember, PriceItem, ScheduleEntry
 
-from .models import ScheduleEntry
+from .models import ScheduleEntry, PriceItem
 
 def home(request: HttpRequest) -> HttpResponse:
     return render(request, "home.html")
