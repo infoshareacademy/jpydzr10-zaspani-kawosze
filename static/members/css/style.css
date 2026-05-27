@@ -1,4 +1,5 @@
-body {
+html, body {
+    height: 100%;
     margin: 0;
     font-family: Arial, sans-serif;
 }
@@ -33,12 +34,12 @@ nav a {
     font-weight: bold;
 }
 .hero {
-    height: 100vh;
+    min-height: 100vh;
+    width: 100%;
 
     background-image:
-        linear-gradient(rgba(0,0,0,0.5),
-        rgba(0,0,0,0.5)),
-        url("../images/Zaspani_main_view.jpeg");
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url("/static/members/images/Zaspani_main_view.jpeg");
 
     background-size: cover;
     background-position: center;
@@ -47,11 +48,11 @@ nav a {
     display: flex;
     justify-content: center;
     align-items: center;
+    place-items: center;
 
-    color: white;
-    text-align: center;
+    position: relative;
+
 }
-
 
 .messages {
     list-style: none;
@@ -87,3 +88,66 @@ nav a {
         visibility: hidden;
     }
 }
+
+.contact-box {
+    background: rgba(0,0,0,0.7);
+    padding: 40px;
+    border-radius: 20px;
+    width: 400px;
+    color: white;
+    text-align: center; /* centruje napisy w formularzu */
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+.contact-box input,
+.contact-box textarea {
+    width: 100%;
+
+    padding: 10px;
+
+    margin-top: 5px;
+    margin-bottom: 15px;
+
+    border: none;
+    border-radius: 10px;
+}
+
+.contact-box button {
+    width: 100%;
+
+    padding: 12px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: crimson;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+.opening-hours {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.opening-hours h3 {
+    margin-bottom: 10px;
+}
+
+.socials {
+    margin-top: auto;
+    padding-top: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+

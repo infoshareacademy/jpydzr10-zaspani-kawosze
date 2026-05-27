@@ -5,12 +5,66 @@
 {% block content %}
 <section class="hero">
 
-{% if contact_lines %}
-    {% for line in contact_lines %}
-        <p>{{ line }}</p>
-    {% endfor %}
-{% else %}
-    <p>Brak danych kontaktowych do wyswietlenia.</p>
-{% endif %}
-    </section>
+    <div class="contact-box">
+
+        <h2>Kontakt</h2>
+
+        <p>
+            <i class="bi bi-telephone-fill"></i>
+            +48 123 456 789
+        </p>
+
+        <p>
+            <i class="bi bi-geo-alt-fill"></i>
+            ul. Zaspanych 15, Gdzieś w Polsce
+        </p>
+
+        <div class="opening-hours">
+
+            <h3>
+                <i class="bi bi-clock-fill"></i>
+                Godziny otwarcia
+            </h3>
+
+            <p>Poniedziałek - Piątek: 6:00 - 23:00</p>
+            <p>Sobota: 8:00 - 22:00</p>
+            <p>Niedziela: 8:00 - 20:00</p>
+
+        </div>
+
+        <h3>
+            <i class="bi bi-envelope-fill"></i>
+            Lub skontaktuj się z nami mailowo
+        </h3>
+
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button type="submit">Wyślij</button>
+        </form>
+
+
+        <div class="socials">
+
+            <h3>
+                <i class="bi bi-share-fill"></i>
+                Social Media
+            </h3>
+
+            <a href="#">
+                <i class="bi bi-instagram"></i>
+                Instagram
+            </a>
+
+            <a href="#">
+                <i class="bi bi-facebook"></i>
+                Facebook
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
 {% endblock %}
