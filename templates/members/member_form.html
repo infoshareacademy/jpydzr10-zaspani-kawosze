@@ -3,6 +3,7 @@
 {% block title %}{{ page_title }}{% endblock %}
 
 {% block content %}
+    <section class="hero">
 <h2>{{ page_title }}</h2>
 
 <form method="post">
@@ -14,4 +15,5 @@
 <p>
     <a href="{% url 'members:list' %}">Wroc do listy</a>
 </p>
+    </section>
 {% endblock %}

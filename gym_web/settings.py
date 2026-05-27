@@ -75,6 +75,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+STATICFILES_DIRS = [
+    BASE_DIR / "static"
+]
+
 LANGUAGE_CODE = "pl"
 
 TIME_ZONE = "Europe/Warsaw"

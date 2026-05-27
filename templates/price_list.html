@@ -3,7 +3,7 @@
 {% block title %}Cennik{% endblock %}
 
 {% block content %}
-<h2>Cennik</h2>
+<section class="hero">
 
 {% if prices %}
     <table border="1" cellpadding="6">
@@ -29,4 +29,5 @@
 {% else %}
     <p>Brak danych cennika do wyswietlenia.</p>
 {% endif %}
+</section>
 {% endblock %}
