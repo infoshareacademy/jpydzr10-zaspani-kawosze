@@ -6,7 +6,10 @@ from django.shortcuts import get_object_or_404, redirect, render
 from members.forms import GymMemberForm
 from members.models import GymMember, PriceItem, ScheduleEntry
 
-from .models import ScheduleEntry, PriceItem
+from django.core.mail import send_mail
+from django.contrib import messages
+from .forms import ContactForm
+
 
 def home(request: HttpRequest) -> HttpResponse:
     return render(request, "home.html")
@@ -23,15 +26,32 @@ def faq(request: HttpRequest) -> HttpResponse:
     )
 
 
-def contact(request: HttpRequest) -> HttpResponse:
-    contact_path = settings.BASE_DIR / "Kontakt.txt"
-    contact_lines = _read_text_lines(contact_path)
+def contact(request):
 
-    return render(
-        request,
-        "contact.html",
-        {"contact_lines": contact_lines},
-    )
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+
+        if form.is_valid():
+
+            name = form.cleaned_data["name"]
+            email = form.cleaned_data["email"]
+            message = form.cleaned_data["message"]
+
+            send_mail(
+                subject=f"Wiadomosc od {name}",
+                message=f"Email: {email}\n\n{message}",
+                from_email=None,
+                recipient_list=["twojmail@gmail.com"],
+            )
+
+            messages.success(request, "Wiadomosc zostala wyslana!")
+
+    else:
+        form = ContactForm()
+
+    return render(request, "contact.html", {
+        "form": form
+    })
 
 
 def price_list(request: HttpRequest) -> HttpResponse:
@@ -131,13 +151,3 @@ def _read_text_lines(file_path):
         for line in file_path.read_text(encoding="utf-8").splitlines()
         if line.strip()
     ]
-
-def schedule_view(request):
-
-    schedule = ScheduleEntry.objects.all()
-
-    return render(
-        request,
-        "schedule.html",
-        {"schedule": schedule}
-    )

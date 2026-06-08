@@ -3,6 +3,7 @@
 {% block title %}Usun klubowicza{% endblock %}
 
 {% block content %}
+    <section class="hero">
 <h2>Usun klubowicza</h2>
 
 <p>Czy na pewno chcesz usunac: {{ member.name }} {{ member.surname }}?</p>
@@ -15,4 +16,5 @@
 <p>
     <a href="{% url 'members:list' %}">Anuluj</a>
 </p>
+    </section>
 {% endblock %}

@@ -75,6 +75,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+STATICFILES_DIRS = [
+    BASE_DIR / "static"
+]
+
 LANGUAGE_CODE = "pl"
 
 TIME_ZONE = "Europe/Warsaw"
@@ -83,6 +87,14 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = "static/"
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # Pod testy, później można podpiąć jakiegoś maila

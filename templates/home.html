@@ -1,19 +1,44 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}Strona glowna{% endblock %}
+{% block title %}Strona główna{% endblock %}
 
 {% block content %}
-<h2>Witamy w Silowni Zaspani</h2>
 
-<p>
-    To jest webowa wersja aplikacji do obslugi klubowiczow, cennika i informacji kontaktowych.
-</p>
+<section class="hero">
 
-<ul>
-    <li><a href="{% url 'members:list' %}">Przejdz do listy klubowiczow</a></li>
-    <li><a href="{% url 'members:price_list' %}">Sprawdz cennik</a></li>
-    <li><a href="{% url 'members:schedule' %}">Zobacz grafik</a></li>
-    <li><a href="{% url 'members:faq' %}">Zobacz FAQ</a></li>
-    <li><a href="{% url 'members:contact' %}">Kontakt</a></li>
-</ul>
+     <div class="hero-content-wrapper">
+
+        <div class="gallery">
+            <img src="{% static 'members/images/siłownia_strona1.png' %}"
+                 alt="Siłownia">
+        </div>
+
+        <div class="teamsection">
+            <img src="{% static 'members/images/ekipa_siłowni.png' %}"
+               alt="ekipa_siłowni.png">
+
+        <div class="team-text">
+           <h2>Poznaj naszą ekipę</h2>
+
+            <p>
+            Łączymy pasję do sportu i dobrej kawy.
+            Nasi trenerzy pomogą Ci osiągnąć cele,
+            a nasi bariści zadbają o energię przed
+            i po treningu.
+            </p>
+
+           <p>
+            Kawa & Forma to miejsce, gdzie budujesz
+            formę w przyjaznej atmosferze.
+           </p>
+
+        <div>
+
+     </div>
+
+</section>
+
 {% endblock %}
+
+

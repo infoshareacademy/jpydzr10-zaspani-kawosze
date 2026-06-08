@@ -41,4 +41,3 @@ class ScheduleEntry(models.Model):
 
     def __str__(self):
         return self.time_range
-
