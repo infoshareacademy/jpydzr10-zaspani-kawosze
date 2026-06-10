@@ -255,27 +255,26 @@ nav a {
   width: 100vw;
   margin-left: 0;
   margin-right: 0;
-  max-width: 100%;
+  max-width: 800px;
 }
+
 
 .team-section {
     display: flex;
-    flex-direction: row; /* WAŻNE */
+    flex-direction: row;
+    flex-wrap: nowrap;
+
     align-items: center;
     justify-content: center;
-    gap: 40px;
 
-    width: 100%;
-    margin-top: 50px;
+    gap: 50px;
 }
 
 .team-section img {
-    width: 400px;
-    height: auto;
+    width: 450px;
     flex-shrink: 0;
 }
 
 .team-text {
-    max-width: 500px;
-    color: white;
+    white-space: pre-line;
 }

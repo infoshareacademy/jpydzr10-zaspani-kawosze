@@ -10,6 +10,7 @@ from django.core.mail import send_mail
 from django.contrib import messages
 from .forms import ContactForm
 
+from pathlib import Path
 
 def home(request: HttpRequest) -> HttpResponse:
     return render(request, "home.html")
