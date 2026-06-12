@@ -5,8 +5,8 @@ from members.models import GymMember, PriceItem, ScheduleEntry
 
 @admin.register(GymMember)
 class GymMemberAdmin(admin.ModelAdmin):
-    list_display = ("name", "surname", "membership_card", "tel_no", "user")
-    search_fields = ("name", "surname", "membership_card", "user__username")
+    list_display = ("name", "surname", "membership_card", "tel_no")
+    search_fields = ("name", "surname", "membership_card")
 
 
 @admin.register(PriceItem)

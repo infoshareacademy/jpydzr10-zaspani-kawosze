@@ -1,17 +1,9 @@
-from django.conf import settings
 from django.db import models
 
 
 class GymMember(models.Model):
     # To jest webowa wersja modelu członka siłowni.
     # Przenosimy tu pola z wcześniejszej klasy GymMember z wersji konsolowej.
-    user = models.OneToOneField(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        verbose_name="Uzytkownik",
-    )
     name = models.CharField(max_length=100)
     surname = models.CharField(max_length=100)
     tel_no = models.CharField(max_length=20)

@@ -1,101 +1,18 @@
 from django.conf import settings
 from django.contrib import messages
-from django.contrib.auth import login, logout
-from django.contrib.auth.decorators import user_passes_test
-from django.contrib.auth.forms import AuthenticationForm
-from django.db import IntegrityError
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
-from django.utils.http import url_has_allowed_host_and_scheme
 
-from members.forms import GymMemberForm, MemberRegistrationForm
+from members.forms import GymMemberForm
 from members.models import GymMember, PriceItem, ScheduleEntry
 
 from django.core.mail import send_mail
 from django.contrib import messages
 from .forms import ContactForm
 
-from pathlib import Path
-
-
-superuser_required = user_passes_test(
-    lambda user: user.is_superuser,
-    login_url="/admin/login/",
-)
 
 def home(request: HttpRequest) -> HttpResponse:
     return render(request, "home.html")
-
-
-def logout_user(request: HttpRequest) -> HttpResponse:
-    logout(request)
-    return redirect("members:home")
-
-
-def admin_login_or_register(request: HttpRequest) -> HttpResponse:
-    if request.user.is_authenticated:
-        if request.user.is_superuser:
-            return redirect("/admin/")
-        return redirect("members:home")
-
-    next_url = request.GET.get("next") or request.POST.get("next") or "members:home"
-    if not url_has_allowed_host_and_scheme(next_url, allowed_hosts={request.get_host()}):
-        next_url = "members:home"
-
-    is_register = request.GET.get("register") == "1" or request.POST.get("mode") == "register"
-
-    if request.method == "POST" and is_register:
-        register_form = MemberRegistrationForm(request.POST)
-        login_form = AuthenticationForm(request=request)
-
-        if register_form.is_valid():
-            user = register_form.save()
-            try:
-                GymMember.objects.create(
-                    user=user,
-                    name=user.username,
-                    surname="-",
-                    tel_no="",
-                    membership_card=user.username,
-                )
-            except IntegrityError:
-                GymMember.objects.create(
-                    user=user,
-                    name=user.username,
-                    surname="-",
-                    tel_no="",
-                    membership_card=f"user-{user.pk}",
-                )
-
-            login(request, user)
-            return redirect(next_url)
-    elif request.method == "POST":
-        login_form = AuthenticationForm(request=request, data=request.POST)
-        register_form = MemberRegistrationForm()
-
-        if login_form.is_valid():
-            user = login_form.get_user()
-            login(request, user)
-            if user.is_superuser:
-                return redirect("/admin/")
-            return redirect(next_url)
-    else:
-        login_form = AuthenticationForm(request=request)
-        register_form = MemberRegistrationForm()
-
-    return render(
-        request,
-        "admin/login.html",
-        {
-            "form": register_form if is_register else login_form,
-            "login_form": login_form,
-            "register_form": register_form,
-            "is_register": is_register,
-            "next": next_url,
-            "site_header": "Rejestracja" if is_register else "Logowanie",
-            "title": "Rejestracja" if is_register else "Logowanie",
-        },
-    )
 
 
 def faq(request: HttpRequest) -> HttpResponse:
@@ -157,7 +74,6 @@ def schedule(request: HttpRequest) -> HttpResponse:
     )
 
 
-@superuser_required
 def member_list(request: HttpRequest) -> HttpResponse:
     members = GymMember.objects.all().order_by("surname", "name")
     return render(
@@ -167,7 +83,6 @@ def member_list(request: HttpRequest) -> HttpResponse:
     )
 
 
-@superuser_required
 def member_create(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
         form = GymMemberForm(request.POST)
@@ -189,7 +104,6 @@ def member_create(request: HttpRequest) -> HttpResponse:
     )
 
 
-@superuser_required
 def member_update(request: HttpRequest, member_id: int) -> HttpResponse:
     member = get_object_or_404(GymMember, pk=member_id)
 
@@ -213,7 +127,6 @@ def member_update(request: HttpRequest, member_id: int) -> HttpResponse:
     )
 
 
-@superuser_required
 def member_delete(request: HttpRequest, member_id: int) -> HttpResponse:
     member = get_object_or_404(GymMember, pk=member_id)
 

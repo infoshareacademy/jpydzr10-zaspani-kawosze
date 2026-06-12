@@ -1,0 +1,62 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'members/css/style.css' %}?v=3">
+</head>
+<body>
+    <section class="auth-page">
+        <form class="auth-box" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}">
+            <input type="hidden" name="mode" value="{% if is_register %}register{% else %}login{% endif %}">
+
+            <div class="auth-heading">
+                <span class="auth-brand">Siłownia Zaspani</span>
+                <h1>{% if is_register %}Rejestracja{% else %}Logowanie{% endif %}</h1>
+                <p>
+                    {% if is_register %}
+                        Utwórz konto klubowicza.
+                    {% else %}
+                        Zaloguj się do swojego konta.
+                    {% endif %}
+                </p>
+            </div>
+
+            {% if form.non_field_errors %}
+                <div class="auth-errors">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+
+            {% for field in form %}
+                <div class="form-group">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.errors %}
+                        <div class="auth-errors">{{ field.errors }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <button type="submit">
+                {% if is_register %}Zarejestruj się{% else %}Zaloguj się{% endif %}
+            </button>
+
+            <div class="auth-links">
+                {% if is_register %}
+                    <a href="/admin/login/?next={{ next }}">masz konto? zaloguj się</a>
+                {% else %}
+                    <a href="/admin/login/?register=1&next={{ next }}">zarejestruj się</a>
+                {% endif %}
+
+                <a href="{% url 'members:home' %}">powrót do strony głównej</a>
+            </div>
+        </form>
+    </section>
+</body>
+</html>

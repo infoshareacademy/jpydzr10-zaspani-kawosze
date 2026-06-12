@@ -7,7 +7,6 @@ app_name = "members"
 
 urlpatterns = [
     path("", views.home, name="home"),
-    path("wyloguj/", views.logout_user, name="logout"),
     path("faq/", views.faq, name="faq"),
     path("kontakt/", views.contact, name="contact"),
     path("cennik/", views.price_list, name="price_list"),

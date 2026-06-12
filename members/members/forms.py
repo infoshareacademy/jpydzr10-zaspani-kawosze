@@ -1,5 +1,4 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
 
 from members.models import GymMember
 
@@ -19,9 +18,3 @@ class ContactForm(forms.Form):
     name = forms.CharField(max_length=100)
     email = forms.EmailField()
     message = forms.CharField(widget=forms.Textarea)
-
-
-class MemberRegistrationForm(UserCreationForm):
-    username = forms.CharField(label="Login")
-    password1 = forms.CharField(label="Haslo", widget=forms.PasswordInput)
-    password2 = forms.CharField(label="Powtorz haslo", widget=forms.PasswordInput)
