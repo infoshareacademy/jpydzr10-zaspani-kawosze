@@ -14,7 +14,8 @@ class GymMemberForm(forms.ModelForm):
             "membership_card": "Numer karty czlonkowskiej",
         }
 
+
 class ContactForm(forms.Form):
-    name = forms.CharField(max_length=100)
-    email = forms.EmailField()
-    message = forms.CharField(widget=forms.Textarea)
+    name = forms.CharField(label="Imie i nazwisko", max_length=100)
+    email = forms.EmailField(label="Adres e-mail")
+    message = forms.CharField(label="Wiadomosc", widget=forms.Textarea)

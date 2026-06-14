@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Platnosc testowa{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="content-card payment-card">
+        <p class="eyebrow">Symulacja platnosci</p>
+        <h1>Potwierdz wybor planu</h1>
+        <p class="lead">
+            To jest bezpieczna zaslepka platnosci przygotowana na potrzeby MVP.
+            Nie pobieramy prawdziwych pieniedzy.
+        </p>
+
+        <div class="summary-box">
+            <p><strong>Plan:</strong> {{ price.display_name }}</p>
+            <p><strong>Liczba wejsc:</strong> {{ price.visits_description }}</p>
+            <p><strong>Cena:</strong> {{ price.price }} zl</p>
+            <p><strong>Metoda platnosci:</strong> {{ price.payment_method }}</p>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Potwierdz platnosc testowa</button>
+        </form>
+
+        <a class="secondary-link" href="{% url 'members:price_list' %}">Wroc do cennika</a>
+    </div>
+</section>
+{% endblock %}

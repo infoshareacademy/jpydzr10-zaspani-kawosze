@@ -1,7 +1,8 @@
 html, body {
     height: 100%;
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: "Trebuchet MS", Georgia, serif;
+    color: white;
 }
 * {
     margin: 0;
@@ -10,7 +11,7 @@ html, body {
 }
 
 header {
-    position: absolute;
+    position: fixed;
     width: 100%;
     top: 0;
     left: 0;
@@ -20,25 +21,33 @@ header {
 
     z-index: 1000;
 
-    background: transparent;
+    background: linear-gradient(180deg, rgba(20, 12, 6, 0.92), rgba(20, 12, 6, 0.25));
+    backdrop-filter: blur(8px);
 }
 
 nav {
     display: flex;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
 nav a {
     color: white;
     text-decoration: none;
     font-weight: bold;
+    letter-spacing: 0.02em;
 }
+
+nav a:hover {
+    color: #f5c16c;
+}
+
 .hero {
     min-height: 100vh;
     width: 100%;
     display: flex;
     justify-content: center;
-    align-content: center;
+    align-items: center;
 
     background-image:
         linear-gradient(rgba(0,0,0,0.5),
@@ -120,6 +129,13 @@ nav a {
     font-weight: bold;
     cursor: pointer;
 }
+
+.demo-note {
+    color: #f5d9a2;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 15px 0;
+}
 .form-group {
     margin-bottom: 20px;
     text-align: left;
@@ -192,6 +208,33 @@ nav a {
 
     text-align: center;
 }
+
+.pricing-wrapper h1,
+.home-panel h1,
+.faq-wrapper h1,
+.schedule-wrapper h1,
+.content-card h1 {
+    font-size: clamp(2.1rem, 5vw, 4.8rem);
+    line-height: 1.05;
+    margin-bottom: 20px;
+}
+
+.eyebrow {
+    color: #f5c16c;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    margin-bottom: 14px;
+}
+
+.lead {
+    color: #f4e6cf;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    max-width: 760px;
+    margin: 0 auto 30px;
+}
+
 .price {
     font-size: 2rem;
     font-weight: bold;
@@ -208,7 +251,9 @@ nav a {
     margin-bottom: 15px;
     line-height: 1.5;
 }
-.price-card button {
+.price-card button,
+.content-card button,
+.form-card button {
     width: 100%;
     padding: 14px;
     border: none;
@@ -223,4 +268,261 @@ nav a {
 
 .price-card button:hover {
     background: #e0a44c;
+}
+
+.button-link {
+    display: inline-block;
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    background: #c58b3a;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    text-decoration: none;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.button-link:hover {
+    background: #e0a44c;
+    transform: translateY(-2px);
+}
+
+.button-link.secondary {
+    width: auto;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.28);
+}
+
+.secondary-link {
+    display: inline-block;
+    color: #f5c16c;
+    margin-top: 18px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.secondary-link:hover {
+    color: white;
+}
+
+.status-pill {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(245,193,108,0.16);
+    color: #f5c16c;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 18px;
+}
+
+.content-card,
+.home-panel,
+.faq-wrapper,
+.schedule-wrapper {
+    width: min(1120px, 100%);
+    background: rgba(0,0,0,0.72);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 28px;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.45);
+    backdrop-filter: blur(8px);
+    padding: 48px;
+}
+
+.wide-card {
+    width: min(1180px, 100%);
+}
+
+.form-card {
+    width: min(560px, 100%);
+}
+
+.form-card form p {
+    margin-bottom: 18px;
+}
+
+.form-card label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-card input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+}
+
+.home-panel {
+    text-align: left;
+}
+
+.home-panel .lead {
+    margin-left: 0;
+}
+
+.home-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin: 30px 0;
+}
+
+.home-actions .button-link {
+    width: auto;
+}
+
+.feature-grid,
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 28px;
+}
+
+.feature-grid div,
+.faq-card {
+    background: rgba(255,255,255,0.09);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 24px;
+}
+
+.feature-grid h3,
+.faq-card h3 {
+    color: #f5c16c;
+    margin-bottom: 12px;
+}
+
+.feature-grid p,
+.faq-card p {
+    color: #f4e6cf;
+    line-height: 1.6;
+}
+
+.faq-wrapper,
+.schedule-wrapper {
+    text-align: center;
+}
+
+.faq-section {
+    margin-top: 34px;
+    text-align: left;
+}
+
+.faq-section h2 {
+    color: white;
+    margin-bottom: 16px;
+}
+
+.table-card {
+    width: 100%;
+    overflow-x: auto;
+    background: rgba(0,0,0,0.48);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 22px;
+    padding: 18px;
+}
+
+.plain-table-card {
+    margin-top: 20px;
+}
+
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: white;
+}
+
+.schedule-table th,
+.schedule-table td {
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    padding: 12px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.schedule-table th {
+    color: #f5c16c;
+    background: rgba(245,193,108,0.08);
+}
+
+.schedule-table a {
+    color: #f5c16c;
+    margin-right: 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.payment-card {
+    max-width: 620px;
+    text-align: center;
+}
+
+.summary-box {
+    background: rgba(255,255,255,0.09);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 18px;
+    padding: 22px;
+    margin: 28px 0;
+    text-align: left;
+}
+
+.summary-box p {
+    margin-bottom: 10px;
+}
+
+.page-ready .home-panel,
+.page-ready .content-card,
+.page-ready .faq-wrapper,
+.page-ready .schedule-wrapper,
+.page-ready .price-card {
+    animation: pageReveal 0.45s ease both;
+}
+
+@keyframes pageReveal {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 900px) {
+    header {
+        padding: 16px 20px;
+    }
+
+    nav {
+        gap: 12px;
+    }
+
+    .hero {
+        padding: 120px 18px 40px;
+        align-items: flex-start;
+    }
+
+    .content-card,
+    .home-panel,
+    .faq-wrapper,
+    .schedule-wrapper,
+    .contact-box {
+        padding: 28px;
+    }
+
+    .feature-grid,
+    .faq-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .home-actions .button-link,
+    .button-link.secondary {
+        width: 100%;
+    }
 }

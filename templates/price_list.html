@@ -5,59 +5,35 @@
 {% block content %}
 <section class="hero">
     <div class="pricing-wrapper">
-        
+        <p class="eyebrow">Cennik</p>
+        <h1>Wybierz plan dla siebie</h1>
+        <p class="lead">
+            Plany ponizej sa pobierane z bazy danych. Nieaktywne pozycje z cennika nie sa wyswietlane uzytkownikowi.
+        </p>
+
         <div class="pricing-container">
+            {% for price in prices %}
+                <div class="price-card">
+                    <span class="status-pill">Aktywny plan</span>
+                    <h3>{{ price.display_name }}</h3>
+                    <p class="price">{{ price.price }} zl</p>
 
+                    <ul>
+                        <li>{{ price.visits_description }}</li>
+                        <li>Platnosc: {{ price.payment_method }}</li>
+                        <li>Dostep do silowni zgodnie z grafikiem</li>
+                    </ul>
 
-            <div class="price-card">
-                <h3>Pakiet latte</h3>
-                <p class="price">90 zł / miesiąc</p>
-
-                <ul>
-                    <li>karnet na 6 miesięcy</li>
-                    <li>Dostęp do siłowni w każdych godzinach</li>
-                    <li>Przedtreningowa kawa</li>
-                    <li>Woda na trening gratis</li>
-                    <li>Zajęcia grupowe w cenie</li>
-                </ul>
-                <button>Wybierz plan</button>
-
-            </div>
-
-            <div class="price-card">
-                <h3>Pakiet americano</h3>
-                <p class="price">120 zł / miesiąc</p>
-
-                <ul>
-                    <li>karnet na 12 miesięcy</li>
-                    <li>Dostęp do siłowni w każdych godzinach</li>
-                    <li>Przedtreningowa kawa</li>
-                    <li>Woda na trening gratis</li>
-                    <li>Zajęcia grupowe w cenie</li>
-                    <li>Koszulka oraz ręcznik członkowski</li>
-                    <li>Pakiety treningowe i dostęp do naszych tutoriali</li>
-                </ul>
-                <button>Wybierz plan</button>
-
-            </div>
-
-            <div class="price-card">
-                <h3>Pakiet espresso</h3>
-                <p class="price">150 zł / miesiąc</p>
-
-                <ul>
-                    <li>karnet na 12 miesięcy</li>
-                    <li>Dostęp do siłowni w każdych godzinach</li>
-                    <li>Przedtreningowa kawa</li>
-                    <li>Woda na trening gratis</li>
-                    <li>Zajęcia grupowe w cenie</li>
-                    <li>Koszulka oraz ręcznik członkowski</li>
-                    <li>Dopasowany plan pod cele treningowe, modyfikowane z nasza kadrą trenerską</li>
-                </ul>
-                <button>Wybierz plan</button>
-
-            </div>
-
+                    <a class="button-link" href="{% url 'members:select_plan' price.id %}">
+                        Wybierz plan
+                    </a>
+                </div>
+            {% empty %}
+                <div class="content-card">
+                    <h2>Brak aktywnych planow</h2>
+                    <p>Dodaj pozycje cennika w panelu administratora albo uruchom import z pliku CSV.</p>
+                </div>
+            {% endfor %}
         </div>
     </div>
 </section>

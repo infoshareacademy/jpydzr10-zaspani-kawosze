@@ -3,17 +3,19 @@
 {% block title %}{{ page_title }}{% endblock %}
 
 {% block content %}
-    <section class="hero">
-<h2>{{ page_title }}</h2>
+<section class="hero">
+    <div class="content-card form-card">
+        <h1>{{ page_title }}</h1>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">{{ button_label }}</button>
-</form>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">{{ button_label }}</button>
+        </form>
 
-<p>
-    <a href="{% url 'members:list' %}">Wroc do listy</a>
-</p>
-    </section>
+        <p>
+            <a class="secondary-link" href="{% url 'members:list' %}">Wroc do listy</a>
+        </p>
+    </div>
+</section>
 {% endblock %}

@@ -3,18 +3,21 @@
 {% block title %}Usun klubowicza{% endblock %}
 
 {% block content %}
-    <section class="hero">
-<h2>Usun klubowicza</h2>
+<section class="hero">
+    <div class="content-card form-card">
+        <p class="eyebrow">Panel administratora</p>
+        <h1>Usun klubowicza</h1>
 
-<p>Czy na pewno chcesz usunac: {{ member.name }} {{ member.surname }}?</p>
+        <p>Czy na pewno chcesz usunac: {{ member.name }} {{ member.surname }}?</p>
 
-<form method="post">
-    {% csrf_token %}
-    <button type="submit">Tak, usun</button>
-</form>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Tak, usun</button>
+        </form>
 
-<p>
-    <a href="{% url 'members:list' %}">Anuluj</a>
-</p>
-    </section>
+        <p>
+            <a class="secondary-link" href="{% url 'members:list' %}">Anuluj</a>
+        </p>
+    </div>
+</section>
 {% endblock %}

@@ -3,42 +3,46 @@
 {% block title %}Klubowicze{% endblock %}
 
 {% block content %}
-    <section class="hero">
-<h2>Lista klubowiczow</h2>
+<section class="hero">
+    <div class="content-card wide-card">
+        <p class="eyebrow">Panel administratora</p>
+        <h1>Lista klubowiczow</h1>
 
-<p>
-    <a href="{% url 'members:add' %}">Dodaj klubowicza</a>
-</p>
+        <p>
+            <a class="button-link" href="{% url 'members:add' %}">Dodaj klubowicza</a>
+        </p>
 
-{% if members %}
-    <table border="1" cellpadding="6">
-        <thead>
-            <tr>
-                <th>Imie</th>
-                <th>Nazwisko</th>
-                <th>Telefon</th>
-                <th>Numer karty</th>
-                <th>Akcje</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for member in members %}
-                <tr>
-                    <td>{{ member.name }}</td>
-                    <td>{{ member.surname }}</td>
-                    <td>{{ member.tel_no }}</td>
-                    <td>{{ member.membership_card }}</td>
-                    <td>
-                        <a href="{% url 'members:edit' member.id %}">Edytuj</a>
-                        <a href="{% url 'members:delete' member.id %}">Usun</a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-{% else %}
-    <p>Brak klubowiczow w bazie.</p>
-{% endif %}
-
-    </section>
+        {% if members %}
+            <div class="table-card plain-table-card">
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Imie</th>
+                            <th>Nazwisko</th>
+                            <th>Telefon</th>
+                            <th>Numer karty</th>
+                            <th>Akcje</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for member in members %}
+                            <tr>
+                                <td>{{ member.name }}</td>
+                                <td>{{ member.surname }}</td>
+                                <td>{{ member.tel_no }}</td>
+                                <td>{{ member.membership_card }}</td>
+                                <td>
+                                    <a href="{% url 'members:edit' member.id %}">Edytuj</a>
+                                    <a href="{% url 'members:delete' member.id %}">Usun</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p>Brak klubowiczow w bazie.</p>
+        {% endif %}
+    </div>
+</section>
 {% endblock %}

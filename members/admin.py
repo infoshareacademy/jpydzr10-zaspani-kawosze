@@ -11,7 +11,8 @@ class GymMemberAdmin(admin.ModelAdmin):
 
 @admin.register(PriceItem)
 class PriceItemAdmin(admin.ModelAdmin):
-    list_display = ("entry_type", "visits_per_month", "price", "payment_method")
+    list_display = ("entry_type", "visits_per_month", "price", "payment_method", "is_active")
+    list_filter = ("is_active",)
     search_fields = ("entry_type", "price", "payment_method")
 
 

@@ -18,12 +18,29 @@ class PriceItem(models.Model):
     visits_per_month = models.CharField("Ilosc wejsc/mies", max_length=50, blank=True)
     price = models.CharField("Cena", max_length=50)
     payment_method = models.CharField("Sposob platnosci", max_length=100)
+    is_active = models.BooleanField("Aktywny plan", default=True)
 
     class Meta:
         ordering = ["id"]
 
     def __str__(self):
         return f"{self.entry_type or 'Cennik'} - {self.price}"
+
+    @property
+    def display_name(self):
+        if self.entry_type:
+            return self.entry_type.capitalize()
+        if self.visits_per_month:
+            return "Karnet"
+        return "Plan"
+
+    @property
+    def visits_description(self):
+        if self.visits_per_month == "open":
+            return "Nielimitowane wejscia w miesiacu"
+        if self.visits_per_month:
+            return f"{self.visits_per_month} wejsc/mies"
+        return "Wejscie jednorazowe"
 
 
 class ScheduleEntry(models.Model):

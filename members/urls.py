@@ -10,6 +10,7 @@ urlpatterns = [
     path("faq/", views.faq, name="faq"),
     path("kontakt/", views.contact, name="contact"),
     path("cennik/", views.price_list, name="price_list"),
+    path("cennik/<int:price_id>/wybierz/", views.select_plan, name="select_plan"),
     path("grafik/", views.schedule, name="schedule"),
     path("members/", views.member_list, name="list"),
     path("members/add/", views.member_create, name="add"),

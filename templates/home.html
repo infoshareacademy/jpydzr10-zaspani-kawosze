@@ -5,20 +5,34 @@
 
 {% block content %}
 <section class="hero">
-{##}
-{#<h2>Witamy w Silowni Zaspani</h2>#}
-{##}
-{#<p>#}
-{#    To jest webowa wersja aplikacji do obslugi klubowiczow, cennika i informacji kontaktowych.#}
-{#</p>#}
-{##}
-{#<ul>#}
-{#    <li><a href="{% url 'members:list' %}">Przejdz do listy klubowiczow</a></li>#}
-{#    <li><a href="{% url 'members:price_list' %}">Sprawdz cennik</a></li>#}
-{#    <li><a href="{% url 'members:schedule' %}">Zobacz grafik</a></li>#}
-{#    <li><a href="{% url 'members:faq' %}">Zobacz FAQ</a></li>#}
-{#    <li><a href="{% url 'members:contact' %}">Kontakt</a></li>#}
-{#</ul>#}
+    <div class="home-panel">
+        <p class="eyebrow">Silownia Zaspani Kawosze</p>
+        <h1>Trening, kawa i prosta obsluga klubowiczow</h1>
+        <p class="lead">
+            To webowa wersja aplikacji dla silowni. W jednym miejscu pokazujemy cennik,
+            grafik zajec, kontakt oraz panel do pracy z klubowiczami.
+        </p>
 
+        <div class="home-actions">
+            <a class="button-link" href="{% url 'members:price_list' %}">Zobacz cennik</a>
+            <a class="button-link secondary" href="{% url 'members:schedule' %}">Sprawdz grafik</a>
+            <a class="button-link secondary" href="{% url 'members:list' %}">Panel klubowiczow</a>
+        </div>
+
+        <div class="feature-grid">
+            <div>
+                <h3>Dane z bazy</h3>
+                <p>Cennik, grafik i klubowicze dzialaja w Django oraz SQLite.</p>
+            </div>
+            <div>
+                <h3>Panel admina</h3>
+                <p>Administrator moze zarzadzac danymi przez gotowy panel Django.</p>
+            </div>
+            <div>
+                <h3>Demo platnosci</h3>
+                <p>Wybor planu prowadzi do bezpiecznej symulacji platnosci.</p>
+            </div>
+        </div>
+    </div>
 </section>
 {% endblock %}
