@@ -11,6 +11,7 @@ Projekt aplikacji webowej dla siłowni, przeniesiony z wcześniejszej wersji kon
 - grafik zajęć z danych zapisanych w bazie,
 - strony FAQ, kontakt i strona główna,
 - panel administratora Django,
+- raport klubowiczów w formacie PDF,
 - import danych startowych z plików JSON i CSV.
 
 ## Modele danych
@@ -72,6 +73,29 @@ Aby utworzyć konto administratora:
 ```powershell
 python manage.py createsuperuser
 ```
+
+Raport PDF można pobrać z listy klubowiczów w panelu admina:
+
+1. zaznacz wybranych klubowiczów,
+2. wybierz akcję `Pobierz raport wybranych klubowiczow (PDF)`,
+3. kliknij `Wykonaj`.
+
+## Formularz kontaktowy i e-mail
+
+Formularz wysyła wiadomość do aktywnych superuserów, którzy mają uzupełniony adres e-mail. Jeśli taki adres nie istnieje, wiadomość jest wypisywana w konsoli serwera.
+
+Do prawdziwej wysyłki SMTP ustaw zmienne środowiskowe:
+
+```powershell
+$env:EMAIL_HOST="smtp.example.com"
+$env:EMAIL_PORT="587"
+$env:EMAIL_HOST_USER="konto@example.com"
+$env:EMAIL_HOST_PASSWORD="haslo-aplikacji"
+$env:EMAIL_USE_TLS="true"
+$env:DEFAULT_FROM_EMAIL="konto@example.com"
+```
+
+Bez `EMAIL_HOST` projekt używa bezpiecznego backendu konsolowego.
 
 ## Testy i sprawdzenie
 

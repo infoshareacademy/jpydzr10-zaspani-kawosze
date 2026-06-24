@@ -7,21 +7,31 @@ from members.models import GymMember
 class GymMemberForm(forms.ModelForm):
     class Meta:
         model = GymMember
-        fields = ["name", "surname", "tel_no", "membership_card"]
+        fields = ["name", "surname", "tel_no"]
         labels = {
-            "name": "Imie",
+            "name": "Imię",
             "surname": "Nazwisko",
             "tel_no": "Numer telefonu",
-            "membership_card": "Numer karty czlonkowskiej",
+        }
+
+
+class AccountDetailsForm(forms.ModelForm):
+    class Meta:
+        model = GymMember
+        fields = ["name", "surname", "tel_no"]
+        labels = {
+            "name": "Imię",
+            "surname": "Nazwisko",
+            "tel_no": "Numer telefonu",
         }
 
 class ContactForm(forms.Form):
-    name = forms.CharField(max_length=100)
-    email = forms.EmailField()
-    message = forms.CharField(widget=forms.Textarea)
+    name = forms.CharField(label="Imię i nazwisko", max_length=100)
+    email = forms.EmailField(label="Adres e-mail")
+    message = forms.CharField(label="Wiadomość", widget=forms.Textarea)
 
 
 class MemberRegistrationForm(UserCreationForm):
     username = forms.CharField(label="Login")
-    password1 = forms.CharField(label="Haslo", widget=forms.PasswordInput)
-    password2 = forms.CharField(label="Powtorz haslo", widget=forms.PasswordInput)
+    password1 = forms.CharField(label="Hasło", widget=forms.PasswordInput)
+    password2 = forms.CharField(label="Powtórz hasło", widget=forms.PasswordInput)

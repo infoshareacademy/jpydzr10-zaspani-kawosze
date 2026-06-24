@@ -1,9 +1,17 @@
+import hashlib
 import json
 
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
 from members.models import GymMember
+
+
+def normalize_membership_card(value):
+    raw_value = str(value).strip().upper()
+    if len(raw_value) == 6 and all(character in "0123456789ABCDEF" for character in raw_value):
+        return raw_value
+    return hashlib.sha256(raw_value.encode("utf-8")).hexdigest()[:6].upper()
 
 
 class Command(BaseCommand):
@@ -31,13 +39,15 @@ class Command(BaseCommand):
         updated_count = 0
 
         for member_data in members_data:
-            membership_card = member_data.get("membership_card")
+            source_card = member_data.get("membership_card")
 
-            if not membership_card:
+            if not source_card:
                 self.stdout.write(
                     self.style.WARNING("Pominieto rekord bez numeru karty.")
                 )
                 continue
+
+            membership_card = normalize_membership_card(source_card)
 
             _, created = GymMember.objects.update_or_create(
                 membership_card=membership_card,

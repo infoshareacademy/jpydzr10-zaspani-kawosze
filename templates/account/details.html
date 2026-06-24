@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Moje konto{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="content-card account-card">
+        <p class="eyebrow">Moje konto</p>
+        <h1>Dane konta</h1>
+
+        <dl class="account-details">
+            <div>
+                <dt>Login</dt>
+                <dd>{{ request.user.username }}</dd>
+            </div>
+            <div>
+                <dt>Status konta</dt>
+                <dd>
+                    {% if member.has_active_membership %}
+                        <span class="membership-status active">Aktywny</span>
+                    {% else %}
+                        <span class="membership-status inactive">Nieaktywny</span>
+                    {% endif %}
+                </dd>
+            </div>
+            <div>
+                <dt>Numer karty</dt>
+                <dd>{{ member.membership_card }}</dd>
+            </div>
+            {% if member.has_active_membership %}
+                <div>
+                    <dt>Zakupiony karnet</dt>
+                    <dd>{{ member.membership_plan.display_name }}</dd>
+                </div>
+                <div>
+                    <dt>Ważny do</dt>
+                    <dd>{{ member.membership_expires_at|date:"d.m.Y H:i" }}</dd>
+                </div>
+                <div>
+                    <dt>Pozostały czas</dt>
+                    <dd>{{ member.membership_days_remaining }} dni</dd>
+                </div>
+            {% endif %}
+        </dl>
+
+        <div class="account-edit-form">
+            <h2>Edytuj dane</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Zapisz dane</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

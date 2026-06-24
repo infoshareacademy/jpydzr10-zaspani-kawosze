@@ -4,38 +4,48 @@
 
 {% block content %}
 <section class="hero">
+    <div class="schedule-wrapper">
+        <p class="eyebrow">Grafik</p>
+        <h1>Zajęcia i dostępność sali</h1>
+        <p class="lead">Dane grafiku są pobierane z bazy po imporcie pliku CSV.</p>
 
-{% if entries %}
-    <table class="schedule-table">
-        <thead>
-            <tr>
-                <th>Godzina</th>
-                <th>Poniedzialek</th>
-                <th>Wtorek</th>
-                <th>Sroda</th>
-                <th>Czwartek</th>
-                <th>Piatek</th>
-                <th>Sobota</th>
-                <th>Niedziela</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for entry in entries %}
-                <tr>
-                    <td>{{ entry.time_range }}</td>
-                    <td>{{ entry.monday }}</td>
-                    <td>{{ entry.tuesday }}</td>
-                    <td>{{ entry.wednesday }}</td>
-                    <td>{{ entry.thursday }}</td>
-                    <td>{{ entry.friday }}</td>
-                    <td>{{ entry.saturday }}</td>
-                    <td>{{ entry.sunday }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-{% else %}
-    <p>Brak danych grafiku do wyswietlenia.</p>
-{% endif %}
+        {% if entries %}
+            <div class="table-card">
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Godzina</th>
+                            <th>Poniedziałek</th>
+                            <th>Wtorek</th>
+                            <th>Środa</th>
+                            <th>Czwartek</th>
+                            <th>Piątek</th>
+                            <th>Sobota</th>
+                            <th>Niedziela</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for entry in entries %}
+                            <tr>
+                                <td>{{ entry.time_range }}</td>
+                                <td>{{ entry.monday }}</td>
+                                <td>{{ entry.tuesday }}</td>
+                                <td>{{ entry.wednesday }}</td>
+                                <td>{{ entry.thursday }}</td>
+                                <td>{{ entry.friday }}</td>
+                                <td>{{ entry.saturday }}</td>
+                                <td>{{ entry.sunday }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="content-card">
+                <p>Brak danych grafiku do wyświetlenia.</p>
+                <p>Uruchom import grafiku albo dodaj wpisy w panelu administratora.</p>
+            </div>
+        {% endif %}
+    </div>
 </section>
 {% endblock %}

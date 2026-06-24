@@ -4,6 +4,7 @@ Django==6.0.4
 
 # Biblioteka uzywana w starszych skryptach konsolowych do tabel w terminalu.
 prettytable==3.17.0
+reportlab==5.0.0
 
 
 # --- Sugestie na pozniej ---

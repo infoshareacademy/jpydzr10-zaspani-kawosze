@@ -35,12 +35,14 @@ class Command(BaseCommand):
 
         created_count = 0
 
-        for row in rows:
+        durations = (1, 3, 6)
+        for duration_months, row in zip(durations, rows):
             PriceItem.objects.create(
-                entry_type=row.get("rodzaj wejścia", ""),
-                visits_per_month=row.get("ilość wejść/mies", ""),
+                entry_type=row.get("rodzaj wejścia", "") or "karnet",
+                duration_months=duration_months,
                 price=row.get("cena", ""),
                 payment_method=row.get("sposób płatności", ""),
+                is_active=True,
             )
             created_count += 1
 

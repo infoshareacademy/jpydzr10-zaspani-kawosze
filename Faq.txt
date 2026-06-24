@@ -1,9 +1,21 @@
-Jak mogę kupić karnet w naszej sieci?
-Jakie są rodzaje karnetów?
-Jak mogę opłacić dług?
-Czy honorujecie karty partnerskie?
-Czy muszę dopłacać do karty partnerskiej?
+### Karnety i płatności
+P: Jak mogę kupić karnet w naszej sieci?
+O: W wersji demo można wybrać plan w zakładce Cennik i przejść przez testową symulację płatności.
+P: Jakie są rodzaje karnetów?
+O: Aktualne plany są pobierane z bazy danych i widoczne w zakładce Cennik.
+P: Czy płatność w aplikacji jest prawdziwa?
+O: Nie. Na tym etapie to bezpieczna zaślepka pokazująca docelowy kierunek działania.
+P: Czy honorujecie karty partnerskie?
+O: Tak, w cenniku może pojawić się osobna pozycja dla kart sportowych albo wejść partnerskich.
 
----------Lokalizacja i dostępność---------
-Gdzie znajdują się wasze kluby?
-W jakich godzinach są otwarte wasze kluby?
+### Lokalizacja i dostępność
+P: Gdzie znajduje się klub?
+O: Dane kontaktowe i adres są widoczne w zakładce Kontakt.
+P: W jakich godzinach działa siłownia?
+O: Godziny oraz zajęcia są dostępne w zakładce Grafik.
+
+### Zajęcia i organizacja
+P: Gdzie sprawdzę zajęcia grupowe?
+O: Zakładka Grafik pokazuje zajęcia z podziałem na dni tygodnia i godziny.
+P: Kto zarządza klubowiczami?
+O: Dane klubowiczów są dostępne w panelu dla zalogowanego administratora.

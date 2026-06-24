@@ -3,17 +3,31 @@
 {% block title %}FAQ{% endblock %}
 
 {% block content %}
-    <section class="hero">
+<section class="hero">
+    <div class="faq-wrapper">
+        <p class="eyebrow">FAQ</p>
+        <h1>Najczęstsze pytania</h1>
+        <p class="lead">Odpowiedzi na pytania o karnety, płatności, lokalizację i zajęcia.</p>
 
-
-{% if questions %}
-    <ul>
-        {% for question in questions %}
-            <li>{{ question }}</li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>Brak pytan FAQ do wyswietlenia.</p>
-{% endif %}
-    </section>
+        {% if faq_sections %}
+            {% for section in faq_sections %}
+                <div class="faq-section">
+                    <h2>{{ section.title }}</h2>
+                    <div class="faq-grid">
+                        {% for item in section.items %}
+                            <article class="faq-card">
+                                <h3>{{ item.question }}</h3>
+                                <p>{{ item.answer }}</p>
+                            </article>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="content-card">
+                <p>Brak pytań FAQ do wyświetlenia.</p>
+            </div>
+        {% endif %}
+    </div>
+</section>
 {% endblock %}

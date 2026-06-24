@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Płatność testowa{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="content-card payment-card">
+        <p class="eyebrow">Symulacja płatności</p>
+        <h1>Potwierdź wybór planu</h1>
+        <p class="lead">
+            To jest bezpieczna zaślepka płatności przygotowana na potrzeby projektu.
+            Nie pobieramy prawdziwych pieniędzy.
+        </p>
+
+        <div class="summary-box">
+            <p><strong>Plan:</strong> {{ price.display_name }}</p>
+            <p><strong>Okres karnetu:</strong> {{ price.get_duration_months_display }}</p>
+            <p><strong>Cena:</strong> {{ price.price }} zł</p>
+            <p><strong>Metoda płatności:</strong> {{ price.payment_method }}</p>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Potwierdź płatność testową</button>
+        </form>
+
+        <a class="secondary-link" href="{% url 'members:price_list' %}">Wróć do cennika</a>
+    </div>
+</section>
+{% endblock %}
